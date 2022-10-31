@@ -4,12 +4,12 @@ import alpaca_trade_api as tradeapi
 import config
 
 # Creating connection into a sqlite database and geting data from the alpaca api
-connection = sqlite3.connect('/Users/king_michael/projects/Trading_app/app.db')
+connection = sqlite3.connect(config.DB_FILE)
 connection.row_factory = sqlite3.Row
 cursor = connection.cursor()
 
 cursor.execute("""
-    SELECT symbol, company FROM stock
+    SELECT symbol, name FROM stock
 """)
 
 rows = cursor.fetchall()
@@ -23,7 +23,7 @@ for asset in assets:
     try:
         if asset.status == 'active' and asset.tradable and asset.symbol not in symbols:
             print(f"Added a new stock {asset.symbol} {asset.name}")
-            cursor.execute("INSERT INTO stock (symbol, company) VALUES (?, ?)", (asset.symbol, asset.name))
+            cursor.execute("INSERT INTO stock (symbol, name) VALUES (?, ?)", (asset.symbol, asset.name))
     except Exception as e:
         print(asset.symbol)
         print(e)

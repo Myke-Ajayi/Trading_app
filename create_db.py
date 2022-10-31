@@ -1,9 +1,9 @@
-import sqlite3
+import sqlite3, config
 
 
 # Creating a database and conecting it into app.db, 
 # remember to check the path
-connection = sqlite3.connect('app.db')
+connection = sqlite3.connect(config.DB_FILE)
 
 cursor = connection.cursor()
 
@@ -11,7 +11,7 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS stock (
         id INTEGER PRIMARY KEY,
         symbol TEXT NOT NULL UNIQUE,
-        company NOT NULL
+        name NOT NULL
     )
 """)
 
@@ -22,8 +22,8 @@ cursor.execute("""
         date NOT NULL,
         open NOT NULL,
         high NOT NULL,
+        low NOT NULL,
         close NOT NULL,
-        adjusted_close NOT NULL,
         volume NOT NULL,
         FOREIGN KEY (stock_id) REFERENCES stock (id)
     )
