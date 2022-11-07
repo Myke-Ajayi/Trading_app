@@ -41,6 +41,6 @@ for i in range(0, len(stock_symbols), call_size):
         cursor.execute("""
             INSERT INTO stock_price (stock_id, date, open, high, low, close, volume)
             VALUES (?, ?, ?, ?, ?, ?, ?)               
-        """, (stock_id, bar['t'], bar['o'], bar['h'], bar['l'], bar['c'], bar['v']))
+        """, (stock_id, bar['t'], bar['o'], bar['h'], bar['l'], bar['c'], bar['v'],))
 
 connection.commit()
