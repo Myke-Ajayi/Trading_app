@@ -5,7 +5,7 @@ import sqlite3
 import sqlite3, config
 
 
-connection = sqlite3.connect(config.DB_FILE)
+connection = sqlite3.connect('app.db')
 
 cursor = connection.cursor()
 
