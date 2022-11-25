@@ -3,7 +3,7 @@ import sqlite3, config
 
 # Creating a database and conecting it into app.db, 
 # remember to check the path
-connection = sqlite3.connect(config.DB_FILE)
+connection = sqlite3.connect('app.db')
 
 cursor = connection.cursor()
 
@@ -11,7 +11,8 @@ cursor.execute("""
     CREATE TABLE IF NOT EXISTS stock (
         id INTEGER PRIMARY KEY,
         symbol TEXT NOT NULL UNIQUE,
-        name NOT NULL
+        name TEXT NOT NULL,
+        exchange TEXT NOT NULL
     )
 """)
 
